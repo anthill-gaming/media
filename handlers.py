@@ -1,13 +1,13 @@
 from anthill.framework.handlers import UploadFileStreamHandler, StaticFileHandler
-from anthill.platform.auth.handlers import UserHandlerMixin
+from anthill.platform.handlers import UserHandlerMixin
 from media.thumbnailer import thumbnail, load_alias
 
 
-class UploadHandler(UserHandlerMixin, UploadFileStreamHandler):
+class UploadHandler(UploadFileStreamHandler, UserHandlerMixin):
     """Files upload handler."""
 
 
-class ResourceHandler(StaticFileHandler):
+class ResourceHandler(StaticFileHandler, UserHandlerMixin):
     """Get requested resource."""
 
     async def get(self, path, include_body=True):
